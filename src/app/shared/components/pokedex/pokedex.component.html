@@ -1,0 +1,36 @@
+<div class="outer-container">
+    <!-- Contenedor izquierdo con el número de especies -->
+    <div class="left-container">
+      <h2 id="species-count">Species: {{pokemons.length}}</h2>
+    </div>
+
+    <!-- Contenedor central con los Pokémon -->
+    <div class="container" id="pokemon-container">
+      <h1>Pokedex</h1>
+      <div class="pokemon-id">ID: {{ pokemonSelected?.id }}</div>
+      <div class="pokemon-name">{{ capitalizeFirstLetter(pokemonSelected?.name)}}</div>
+      <div class="pokemon-images">
+        <img *ngIf="pokemonSelected" src="{{ pokemonSelected.sprites[0] }}" alt="pokemon-front-sprite" class="pokemon-img">
+        <img *ngIf="pokemonSelected" src="{{ pokemonSelected.sprites[1] }}" alt="pokemon-front-sprite" class="pokemon-img">
+      </div>
+      <div>
+        <span class="pokemon-specie">{{ pokemonSelected?.specie}}</span>
+      </div>
+      <div class="pokemon-type">Type: {{ pokemonSelected?.types?.join(', ') }}</div>
+      <div class="pokemon-size">
+        <div class="pokemon-info">Height: {{ pokemonSelected?.height }}m</div>
+        <div class="pokemon-info">Weight: {{ pokemonSelected?.weight }}kg</div>
+      </div>
+      <div class="pokemon-description">{{ pokemonSelected?.description }}</div>
+    </div>
+
+    <!-- Contenedor de los nombres de Pokémon a la derecha -->
+    <div  class="names-container" id="names-container">
+      <div *ngFor="let pokemon of pokemons"  class="pokemon-name-list" id="pokemon-name-list" (click)="onPokemonClick(pokemon)"
+      [ngClass]="{'pokemon-name-list-selected': pokemon === pokemonSelected}">
+        Nº{{ pokemon.id}}
+        <img src="{{ pokemon.sprites[0] }}" alt="{{ pokemon.name }}">
+        {{capitalizeFirstLetter(pokemon.name)}}
+      </div>
+    </div>
+</div>

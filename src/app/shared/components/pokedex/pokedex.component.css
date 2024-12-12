@@ -1,0 +1,176 @@
+/* Tema oscuro para Pokedex */
+
+/* Fondo general */
+.outer-container {
+    display: flex;
+    background-color: #121212;
+    color: #FFFFFF;
+    font-family:monospace;
+    height: 95vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor izquierdo */
+.left-container {
+    width: 15%; /* Usar porcentaje para la anchura */
+    background-color: #1E1E1E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 1em;
+    background: linear-gradient(135deg, #121212, #1E1E1E, #3A3A3A);
+}
+
+.left-container h2 {
+    font-size: 2vw; /* Tamaño basado en el ancho de la ventana */
+    color: whitesmoke;
+}
+
+/* Contenedor central */
+.container {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #181818;
+    background: linear-gradient(135deg, #121212, #1E1E1E, #3A3A3A);
+    gap: 1em;
+}
+
+.container h1 {
+    font-size: 3vw; /* Tamaño basado en el ancho de la ventana */
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.pokemon-name {
+    font-size: 2vw;
+    margin: 1rem 0;
+    color: #7e807e;
+}
+
+.pokemon-id, .pokemon-info, .pokemon-type {
+    font-size: 1.15vw;
+    margin: 0.5rem 0;
+}
+
+.pokemon-description {
+    font-size: 0.1vw;
+}
+
+.pokemon-type{
+    font-style: italic;
+    color: cadetblue;
+}
+
+.pokemon-description {
+    font-size: 1vw;
+}
+
+.pokemon-img {
+    width: 15vw; /* Utiliza el 15% del ancho de la ventana */
+    height: auto; /* Mantener proporciones */
+    margin: 1rem;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+.pokemon-specie {
+    display: block;
+}
+
+/* Alinear imágenes lado a lado */
+#pokemon-container div {
+    display: inline-flex;
+    margin: 0 1rem;
+    flex-direction: row;
+}
+
+#pokemon-container img {
+    display: inline;
+    width: 8vw; /* Ajuste proporcional: tamaño más pequeño de las imágenes */
+    height: auto; /* Mantener proporciones */
+    margin: 0 1rem;
+}
+
+/* Contenedor derecho */
+.names-container {
+    width: 25%; /* Usar porcentaje para el ancho */
+    background-color: #1E1E1E;
+    font-size: 1.5em;
+    overflow-y: auto;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    background: linear-gradient(135deg, #121212, #1E1E1E, #3A3A3A);
+}
+
+.names-container .pokemon-name-list {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    background-color: #262626;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: background-color 1.2s;
+}
+
+.names-container .pokemon-name-list:hover {
+    background-color: #5f5d5a;
+    color: #000000;
+    font-weight: bold;
+}
+
+.pokemon-name-list img {
+    width: 8vw; /* Tamaño proporcional */
+    height: auto;
+    border-radius: 5px;
+    margin-right: 1rem;
+}
+
+/* Estilo para el Pokémon seleccionado */
+.pokemon-name-list-selected {
+    background-color: #5f5d5a !important;
+    color: #000000 !important;
+}
+
+/* Estilo para la barra de desplazamiento personalizada */
+.names-container {
+    width: 25%;
+    background-color: #1E1E1E;
+    overflow-y: auto;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    
+    /* Barra de desplazamiento personalizada */
+    scrollbar-width:100%; /* Barras de desplazamiento finas (en Firefox) */
+    scrollbar-color: #000000 #1E1E1E; /* Color de la barra y de la pista (en Firefox) */
+}
+
+/* Para navegadores Webkit (Chrome, Safari, etc.) */
+.names-container::-webkit-scrollbar {
+    width: 8px; /* Ancho de la barra de desplazamiento */
+}
+
+.names-container::-webkit-scrollbar-track {
+    background-color: #1E1E1E; /* Fondo de la pista */
+    border-radius: 10px; /* Bordes redondeados en la pista */
+}
+
+.names-container::-webkit-scrollbar-thumb {
+    background-color: #4CAF50; /* Color de la barra de desplazamiento */
+    border-radius: 10px; /* Bordes redondeados en la barra */
+    border: 2px solid #121212; /* Añadir un borde oscuro alrededor de la barra */
+}
+
+.names-container::-webkit-scrollbar-thumb:hover {
+    background-color: #FF9800; /* Color cuando el usuario pasa el ratón */
+}
