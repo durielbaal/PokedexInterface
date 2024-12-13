@@ -1,7 +1,7 @@
 <div class="outer-container">
     <!-- Contenedor izquierdo con el número de especies -->
     <div class="left-container">
-      <h2 id="species-count">Species: {{pokemons.length}}</h2>
+      <h2 id="species-count">Hoenn Region.<br>Species: {{pokemons.length}}</h2>
     </div>
 
     <!-- Contenedor central con los Pokémon -->
@@ -16,6 +16,9 @@
       <div>
         <span class="pokemon-specie">{{ pokemonSelected?.specie}}</span>
       </div>
+      <div>
+        <span class="pokemon-habitat">Habitat: {{ pokemonSelected?.habitat}}</span>
+      </div>
       <div class="pokemon-type">Type: {{ pokemonSelected?.types?.join(', ') }}</div>
       <div class="pokemon-size">
         <div class="pokemon-info">Height: {{ pokemonSelected?.height }}m</div>
@@ -25,12 +28,57 @@
     </div>
 
     <!-- Contenedor de los nombres de Pokémon a la derecha -->
-    <div  class="names-container" id="names-container">
-      <div *ngFor="let pokemon of pokemons"  class="pokemon-name-list" id="pokemon-name-list" (click)="onPokemonClick(pokemon)"
-      [ngClass]="{'pokemon-name-list-selected': pokemon === pokemonSelected}">
-        Nº{{ pokemon.id}}
-        <img src="{{ pokemon.sprites[0] }}" alt="{{ pokemon.name }}">
-        {{capitalizeFirstLetter(pokemon.name)}}
+    <div class="names-container" id="names-container">
+      <!-- Botón para abrir el filtro -->
+      <button (click)="toggleFilterWindow()" class="filter-button">Filter</button>
+  
+      <!-- Ventana flotante del filtro -->
+      <div *ngIf="isFilterWindowOpen" class="filter-popup">
+        <div class="popup-header">
+          <span>Filter Pokémon</span>
+          <button (click)="toggleFilterWindow()" class="close-btn">X</button>
+        </div>
+        <div class="search-container">
+          <input 
+            type="text" 
+            placeholder="Search Pokémon by name and id" 
+            [(ngModel)]="searchTerm" 
+            (input)="filterPokemons()" 
+            class="search-bar">
+          <div class="type-filter">
+            <label for="type1">Select Type/s:</label>
+            <select id="type1" [(ngModel)]="selectedType1" (change)="filterPokemons()">
+              <option value="">--All Types--</option>
+              <option *ngFor="let type of pokemonTypes" [value]="type">{{ capitalizeFirstLetter(type) }}</option>
+            </select>
+            <select id="type2" [(ngModel)]="selectedType2" (change)="filterPokemons()">
+              <option value="">--All Types--</option>
+              <option *ngFor="let type of pokemonTypes" [value]="type">{{ capitalizeFirstLetter(type) }}</option>
+            </select>
+          </div>
+          <div>
+            <div class="order-filter">
+              <label for="orderBy">Order By:</label>
+              <select id="orderBy" [(ngModel)]="orderBy" (change)="orderPokemons()">
+                <option value="name">Name</option>
+                <option value="id">ID</option>
+              </select>
+              <button (click)="toggleOrderDirection()" class="arrow-btn">
+                <span *ngIf="orderDirection === 'asc'" class="arrow-up">&#8593;</span>
+                <span *ngIf="orderDirection === 'desc'" class="arrow-down">&#8595;</span>
+              </button>
+            </div>
+          </div>
+          <button (click)="resetFilter()" class="filter-button">Reset Filter</button>
+        </div>
       </div>
+      <div *ngFor="let pokemon of filteredPokemons"  class="pokemon-name-list" id="pokemon-name-list" (click)="onPokemonClick(pokemon)"
+        [ngClass]="{'pokemon-name-list-selected': pokemon === pokemonSelected}">
+          Nº{{ pokemon.id}}
+          <img src="{{ pokemon.sprites[0] }}" alt="{{ pokemon.name }}">
+          {{capitalizeFirstLetter(pokemon.name)}}
+      </div>  
+
+      
     </div>
 </div>
