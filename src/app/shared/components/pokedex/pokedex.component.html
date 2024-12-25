@@ -6,6 +6,7 @@
 
     <!-- Contenedor central con los Pokémon -->
     <div class="container" id="pokemon-container">
+      <button routerLink="/login" class="button"><h2>Make your team with...Team Builder</h2></button>
       <h1>Pokedex</h1>
       <div class="pokemon-id">ID: {{ pokemonSelected?.id }}</div>
       <div class="pokemon-name">{{ capitalizeFirstLetter(pokemonSelected?.name)}}</div>
@@ -30,7 +31,7 @@
     <!-- Contenedor de los nombres de Pokémon a la derecha -->
     <div class="names-container" id="names-container">
       <!-- Botón para abrir el filtro -->
-      <button (click)="toggleFilterWindow()" class="filter-button">Filter</button>
+      <button (click)="toggleFilterWindow()" class="button">Filter</button>
   
       <!-- Ventana flotante del filtro -->
       <div *ngIf="isFilterWindowOpen" class="filter-popup">

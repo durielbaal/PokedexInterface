@@ -1,6 +1,6 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { pokemonConfig } from './app/shared/configs/pokemon.config';
-import { PokedexComponent } from './app/shared/components/pokedex/pokedex.component';
+import { RootComponent } from './app/shared/components/root/root.component';
 
-bootstrapApplication(PokedexComponent, pokemonConfig)
+bootstrapApplication(RootComponent, pokemonConfig)
   .catch((err) => console.error(err));

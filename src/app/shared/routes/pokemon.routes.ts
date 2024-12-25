@@ -2,11 +2,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PokedexComponent } from '../components/pokedex/pokedex.component';
+import { LoginComponent } from '../components/login/login.component';
+import { PageErrorComponent } from '../components/page-error/page-error.component';
  // Importa tu componente
 
 export const pokemonRoutes: Routes = [
-  { path: '', redirectTo: '/pokedex', pathMatch: 'full' },  // Redirige la ruta base a la página de Pokedex
-  { path: 'pokedex', component: PokedexComponent },  // Ruta para el componente Pokedex
+  { path: '', redirectTo: '/login', pathMatch: 'full' },  // Redirige la ruta base a la página de Pokedex
+  { path: 'pokedex', component: PokedexComponent },
+  { path: 'login', component: LoginComponent },  
+  { path: '404', component: PageErrorComponent },
+  { path: '**', redirectTo: '/404' }
   // Puedes añadir más rutas aquí
 ];
 

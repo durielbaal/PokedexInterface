@@ -2,14 +2,16 @@ import { Component,OnInit } from '@angular/core';
 import { Pokemon } from '../../../models/Pokemon';
 import { PokemonService } from '../../../core/services/pokemon.service';
 import { CommonModule } from '@angular/common'; 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-pokedex',
   templateUrl: './pokedex.component.html',
   styleUrl: './pokedex.component.css',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,RouterModule],
+
 })
 export class PokedexComponent implements OnInit {
   pokemons: Pokemon[] = [];
