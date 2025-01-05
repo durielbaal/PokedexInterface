@@ -35,10 +35,13 @@ export class TeamBuilderComponent {
   items: string[] = ['None', 'Miracle Seed', 'Focus Sash'];
   natures: string[] = ['Modest', 'Adamant', 'Jolly', 'Timid'];
   moves: string[] =['move1','move2','move3','Tackle','Flamethrower','move5','move6',];
+  abilities: string[] =['Overgrow','ab1','ab2'];
   pokemonCards: (Pokemon | null)[] = [null, null, null, null, null, null];
   selectedNature: string = this.pokemonCards[this.selectedPokemonIndex]?.nature || 'None';
   selectedItem: string = this.pokemonCards[this.selectedPokemonIndex]?.item || 'None';
   selectedMove: string[] = this.pokemonCards[this.selectedPokemonIndex]?.moves || ['None','None','None','None'];
+  selectedAbility: string = this.pokemonCards[this.selectedPokemonIndex]?.ability || 'None';
+  
   get statsArray() {
     const selectedPokemon = this.pokemonCards[this.selectedPokemonIndex];
     return selectedPokemon ? [
@@ -189,9 +192,14 @@ export class TeamBuilderComponent {
   updateMove(index: number){
     const pokemon = this.pokemonCards[this.selectedPokemonIndex];
     if(pokemon){
-      console.log("move "+this.selectedMove[index])
       pokemon.moves[index] = this.selectedMove[index];
-      console.log("change "+this.selectedMove[index])
+    }   
+  }
+  updateAbility(){
+    const pokemon = this.pokemonCards[this.selectedPokemonIndex];
+    if(pokemon){
+      console.log(this.selectedAbility);
+      pokemon.ability= this.selectedAbility;
     }   
   }
 
@@ -221,5 +229,6 @@ export class TeamBuilderComponent {
     this.selectedNature = this.pokemonCards[this.selectedPokemonIndex]?.nature || 'None';
     this.selectedItem = this.pokemonCards[this.selectedPokemonIndex]?.item || 'None';
     this.selectedMove = this.pokemonCards[this.selectedPokemonIndex]?.moves || ['None','None','None','None'];
+    this.selectedAbility = this.pokemonCards[this.selectedPokemonIndex]?.ability || 'None';
   }
 }

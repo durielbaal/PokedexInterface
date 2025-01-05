@@ -53,6 +53,10 @@
         <label for="items">Items:</label>
         <select id="item" [(ngModel)]="selectedItem" (ngModelChange)="updateItem()" >
           <option *ngFor="let item of items" [value]="item">{{ item }}</option>
+        </select> 
+        <label for="abilities">Ability:</label>
+        <select id="ability" [(ngModel)]="selectedAbility" (ngModelChange)="updateAbility()" >
+          <option *ngFor="let ability of abilities" [value]="ability">{{ ability }}</option>
         </select>        
       </div>
       <div class="stats_column">
@@ -65,7 +69,7 @@
             </div>
           </div>
         </div>
-        <div class="moves" style="background-color: red;" *ngIf="pokemonCards[selectedPokemonIndex]">
+        <div class="moves"  *ngIf="pokemonCards[selectedPokemonIndex]">
           <h3>Moves</h3>
           <select  id="move1" [(ngModel)]="selectedMove[0]" (ngModelChange)="updateMove(0)" >
             <option *ngFor="let move of moves" [value]="move">{{ move }}</option>
@@ -91,8 +95,8 @@
             </div>
           </div>
         </div>   
-        <div class="battle_stats" >
-          <h3>Battle Stats</h3>
+        <div class="ivs" >
+          <h3>Ivs</h3>
           <div *ngFor="let stat of statsArray">
             <label>{{ stat.name }}: {{ stat.value }}</label>
             <div class="progress-bar-container">
@@ -100,8 +104,8 @@
             </div>
           </div>
         </div>  
-        <div class="battle_stats" >
-          <h3>Battle Stats</h3>
+        <div class="evs" >
+          <h3>Evs</h3>
           <div *ngFor="let stat of statsArray">
             <label>{{ stat.name }}: {{ stat.value }}</label>
             <div class="progress-bar-container">
