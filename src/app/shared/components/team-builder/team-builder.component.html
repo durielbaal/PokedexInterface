@@ -1,0 +1,116 @@
+<!-- pokemon.component.html -->
+<nav>
+    <ul class="menu">
+      <li class="menu-item" (mouseenter)="toggleMenu()" (mouseleave)="toggleMenu()">
+        <a href="#">Cuenta</a>
+        <ul *ngIf="menuVisible" class="submenu">
+          <li><a href="#">Log Out</a></li>
+          <li><a href="#">Mis Datos</a></li>
+        </ul>
+      </li>
+      <li class="menu-item"><a href="#">Mis Equipos</a></li>
+    </ul>
+  </nav>
+<div class="content">
+    <div class="teamBuilder">
+        <div class="cards-grid">
+            <div *ngFor="let card of pokemonCards; let i = index" 
+                 class="card" 
+                 [class.selected]="i === selectedPokemonIndex" 
+                 (click)="selectPokemonForCard(i)">
+              <div *ngIf="card; else emptyCard">
+                <img [src]="card.image" [alt]="card.name">
+                <p>{{ card.name }} (#{{ card.pokedexNumber }})</p>
+                <p>Types: {{ card.types.join(', ') }}</p>
+                <p>Ability: {{ card.ability }}</p>
+                <p>Item: {{ card.item }}</p>
+              </div>
+              <ng-template #emptyCard>
+                <p>Empty Card</p>
+              </ng-template>
+            </div>
+          </div>
+          
+        <div class="pokemon-list">
+        <div *ngFor="let pokemon of allPokemon" class="pokemon" (click)="replacePokemon(pokemon)">
+            <img [src]="pokemon.image" [alt]="pokemon.name">
+            <p>{{ pokemon.name }} (#{{ pokemon.pokedexNumber }})</p>
+            <p>Types: {{ pokemon.types.join(', ') }}</p>
+        </div>
+        </div>
+    </div>
+    <div class="pokemon_stats" *ngIf="pokemonCards[selectedPokemonIndex]">
+      <h2>#{{ pokemonCards[selectedPokemonIndex]?.pokedexNumber }} {{ pokemonCards[selectedPokemonIndex]?.name }}</h2>
+      <div class="stats_column">
+        <img [src]="pokemonCards[selectedPokemonIndex]?.image" [alt]="pokemonCards[selectedPokemonIndex]?.name ">
+        <p>Types: {{ pokemonCards[selectedPokemonIndex]?.types?.join(', ') }}</p>
+
+        <label for="natures">Nature:</label>
+        <select id="nature" [(ngModel)]="selectedNature" (ngModelChange)="updateNature()" >
+          <option *ngFor="let nature of natures" [value]="nature">{{ nature }}</option>
+        </select>
+
+        <label for="items">Items:</label>
+        <select id="item" [(ngModel)]="selectedItem" (ngModelChange)="updateItem()" >
+          <option *ngFor="let item of items" [value]="item">{{ item }}</option>
+        </select>        
+      </div>
+      <div class="stats_column">
+        <div class="battle_stats" >
+          <h3>Base Stats</h3>
+          <div *ngFor="let stat of statsArray">
+            <label>{{ stat.name }}: {{ stat.value }}</label>
+            <div class="progress-bar-container">
+              <div class="progress-bar" [style.width.%]="(stat.value/255)*100" [title]="stat.value + '%'"></div>
+            </div>
+          </div>
+        </div>
+        <div class="moves" style="background-color: red;" *ngIf="pokemonCards[selectedPokemonIndex]">
+          <h3>Moves</h3>
+          <select  id="move1" [(ngModel)]="selectedMove[0]" (ngModelChange)="updateMove(0)" >
+            <option *ngFor="let move of moves" [value]="move">{{ move }}</option>
+          </select>
+          <select  id="move2" [(ngModel)]="selectedMove[1]" (ngModelChange)="updateMove(1)" >
+            <option *ngFor="let move of moves" [value]="move">{{ move }}</option>
+          </select>
+          <select  id="move3" [(ngModel)]="selectedMove[2]" (ngModelChange)="updateMove(2)" >
+            <option *ngFor="let move of moves" [value]="move">{{ move }}</option>
+          </select>
+          <select  id="move4" [(ngModel)]="selectedMove[3]" (ngModelChange)="updateMove(3)" >
+            <option *ngFor="let move of moves" [value]="move">{{ move }}</option>
+          </select>
+        </div>        
+      </div>   
+      <div class="stats_row">
+        <div class="battle_stats" >
+          <h3>Battle Stats</h3>
+          <div *ngFor="let stat of statsArray">
+            <label>{{ stat.name }}: {{ stat.value }}</label>
+            <div class="progress-bar-container">
+              <div class="progress-bar" [style.width.%]="(stat.value/255)*100" [title]="stat.value + '%'"></div>
+            </div>
+          </div>
+        </div>   
+        <div class="battle_stats" >
+          <h3>Battle Stats</h3>
+          <div *ngFor="let stat of statsArray">
+            <label>{{ stat.name }}: {{ stat.value }}</label>
+            <div class="progress-bar-container">
+              <div class="progress-bar" [style.width.%]="(stat.value/255)*100" [title]="stat.value + '%'"></div>
+            </div>
+          </div>
+        </div>  
+        <div class="battle_stats" >
+          <h3>Battle Stats</h3>
+          <div *ngFor="let stat of statsArray">
+            <label>{{ stat.name }}: {{ stat.value }}</label>
+            <div class="progress-bar-container">
+              <div class="progress-bar" [style.width.%]="(stat.value/255)*100" [title]="stat.value + '%'"></div>
+            </div>
+          </div>
+        </div>          
+      </div>   
+    </div>
+</div>  
+
+  

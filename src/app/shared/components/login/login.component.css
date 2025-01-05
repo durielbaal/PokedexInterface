@@ -1,0 +1,107 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 98.2vh;  /* La altura debe ser del 100% */
+  width: 100%;
+  flex-grow: 1;
+}
+
+/* Estilos del Header */
+.header {
+  background: linear-gradient(135deg, #121212, #1E1E1E, #3A3A3A);
+  padding: 40px 20px;
+  text-align: center;
+  border-radius: 1em;
+  flex-shrink: 0; /* Evita que el header se encoja */
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: #f4f4f4;
+  margin-bottom: 10px;
+}
+
+.header p {
+  font-size: 1.1rem;
+  color: #b0b6bc; /* Color gris claro para subtítulo */
+}
+
+/* Estilos del contenido principal (Login) */
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;  /* Hace que ocupe el espacio restante */
+  padding: 20px;
+}
+
+.login-box {
+  background: linear-gradient(135deg, #121212, #1E1E1E, #3A3A3A); /* Fondo más claro para el login */
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  border-radius: 1em;
+}
+
+.login-box h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #f4f4f4;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  color: #b0b6bc;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #404246; /* Fondo oscuro para inputs */
+  color: #f0f0f0;
+  border: 1px solid #444;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #f4f4f4;
+}
+
+
+/* Estilos del Footer */
+.footer {
+  background: linear-gradient(135deg, #121212, #1E1E1E, #3A3A3A);
+  padding: 15px 0;
+  border-radius: 1em;
+  text-align: center;
+  flex-shrink: 0; /* Evita que el footer se encoja */
+}
+
+.footer p {
+  font-size: 0.9rem;
+  color: #b0b6bc;
+}
+
+button{
+  padding: 5%;
+}

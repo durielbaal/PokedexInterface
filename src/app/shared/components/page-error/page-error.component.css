@@ -1,0 +1,54 @@
+
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 98.2vh; /* Ocupa toda la altura de la pantalla */
+    background-color: #1a1a1a; /* Fondo oscuro */
+    color: #f1f1f1; /* Texto claro */
+  }
+  
+  .error-content {
+    text-align: center;
+    max-width: 600px;
+    padding: 20px;
+    border: 2px solid #444; /* Borde sutil */
+    border-radius: 1em;
+    background: linear-gradient(135deg, #121212, #1E1E1E, #3A3A3A); /* Fondo de la caja de error */
+  }
+  
+  .error-code {
+    font-size: 6rem;
+    font-weight: bold;
+    color: #e74c3c; /* Rojo brillante */
+  }
+  
+  .error-message {
+    font-size: 1.5rem;
+    margin: 10px 0;
+  }
+  
+  .error-description {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  .button {
+    display: inline-block;
+    text-decoration: none;
+    color: #ffffff;
+  }
+  
+  @media (max-width: 600px) {
+    .error-code {
+      font-size: 4rem;
+    }
+    .error-message {
+      font-size: 1.2rem;
+    }
+    .error-description {
+      font-size: 0.9rem;
+    }
+  }
+  
