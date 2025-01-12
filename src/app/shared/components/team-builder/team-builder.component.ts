@@ -18,6 +18,8 @@ interface Pokemon {
   specialDefense: number,
   speed: number,
   hp: number,
+  ivs: number[],
+  evs: number[]
 }
 @Component({
   selector: 'app-team-builder',
@@ -39,7 +41,7 @@ export class TeamBuilderComponent {
   selectedItem: string = this.pokemonCards[this.selectedPokemonIndex]?.item || 'None';
   selectedMove: string[] = this.pokemonCards[this.selectedPokemonIndex]?.moves || ['None','None','None','None'];
   selectedAbility: string = this.pokemonCards[this.selectedPokemonIndex]?.ability || 'None';
-  ivs: number[] = [0,0,0,0,0,0];
+  ivs: number [] = [0,0,0,0,0,0];
   evs: number[] = [0,0,0,0,0,0];
   allPokemon: Pokemon[] =  [
     {
@@ -57,6 +59,8 @@ export class TeamBuilderComponent {
       specialDefense: 65,
       speed: 45,
       hp: 45,
+      ivs: [0,0,0,0,0,0],
+      evs: [0,0,0,0,0,0]
     },
     {
       pokedexNumber: 2,
@@ -73,6 +77,8 @@ export class TeamBuilderComponent {
       specialDefense: 80,
       speed: 60,
       hp: 60,
+      ivs: [0,0,0,0,0,0],
+      evs: [0,0,0,0,0,0]
     },
     // El resto de los Pokémon seguirían con la misma estructura
   ];
@@ -116,8 +122,10 @@ export class TeamBuilderComponent {
   }
 
   selectPokemonForCard(index: number) {
-    this.selectedPokemonIndex = index;
+    this.selectedPokemonIndex = index;   
     this.resetAttributesSelected();
+    this.evs = this.pokemonCards[this.selectedPokemonIndex]?.ivs || [];
+    this.ivs = this.pokemonCards[this.selectedPokemonIndex]?.evs || [];
   }
 
 
