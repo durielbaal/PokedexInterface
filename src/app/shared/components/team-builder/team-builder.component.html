@@ -62,11 +62,31 @@
       <div class="stats_column">
         <div class="battle_stats" >
           <h3>Base Stats</h3>
-          <div *ngFor="let stat of statsArray">
-            <label>{{ stat.name }}: {{ stat.value }}</label>
-            <div class="progress-bar-container">
-              <div class="progress-bar" [style.width.%]="(stat.value/255)*100" [title]="stat.value + '%'"></div>
+          <div *ngIf="pokemonCards[selectedPokemonIndex]">
+            <label>Attack: {{ (pokemonCards[selectedPokemonIndex]?.attack || 0) }}</label>
+            <div class="progress-bar-container" *ngIf="pokemonCards[selectedPokemonIndex]?.attack !== undefined">
+              <div class="progress-bar" [style.width.%]="(pokemonCards[selectedPokemonIndex]?.attack || 0) / 255 * 100"></div>
             </div>
+            <label>Special Attack: {{ (pokemonCards[selectedPokemonIndex]?.specialAttack) }}</label>
+            <div class="progress-bar-container" *ngIf="pokemonCards[selectedPokemonIndex]?.specialAttack !== undefined">
+              <div class="progress-bar" [style.width.%]="(pokemonCards[selectedPokemonIndex]?.specialAttack || 0) / 255 * 100"></div>
+            </div>
+            <label>Defense: {{ (pokemonCards[selectedPokemonIndex]?.defense) }}</label>
+            <div class="progress-bar-container" *ngIf="pokemonCards[selectedPokemonIndex]?.defense !== undefined">
+              <div class="progress-bar" [style.width.%]="(pokemonCards[selectedPokemonIndex]?.defense || 0) / 255 * 100"></div>
+            </div>
+            <label>Special Defense: {{ (pokemonCards[selectedPokemonIndex]?.specialDefense) }}</label>
+            <div class="progress-bar-container" *ngIf="pokemonCards[selectedPokemonIndex]?.specialDefense !== undefined">
+              <div class="progress-bar" [style.width.%]="(pokemonCards[selectedPokemonIndex]?.specialDefense || 0) / 255 * 100"></div>
+            </div>
+            <label>Speed: {{ (pokemonCards[selectedPokemonIndex]?.speed) }}</label>
+            <div class="progress-bar-container" *ngIf="pokemonCards[selectedPokemonIndex]?.speed !== undefined">
+              <div class="progress-bar" [style.width.%]="(pokemonCards[selectedPokemonIndex]?.speed || 0) / 255 * 100"></div>
+            </div>
+            <label>Hp: {{ (pokemonCards[selectedPokemonIndex]?.hp) }}</label>
+            <div class="progress-bar-container" *ngIf="pokemonCards[selectedPokemonIndex]?.hp !== undefined">
+              <div class="progress-bar" [style.width.%]="(pokemonCards[selectedPokemonIndex]?.hp || 0) / 255 * 100"></div>
+            </div>           
           </div>
         </div>
         <div class="moves"  *ngIf="pokemonCards[selectedPokemonIndex]">
@@ -86,33 +106,67 @@
         </div>        
       </div>   
       <div class="stats_row">
-        <div class="battle_stats" >
-          <h3>Battle Stats</h3>
-          <div *ngFor="let stat of statsArray">
-            <label>{{ stat.name }}: {{ stat.value }}</label>
-            <div class="progress-bar-container">
-              <div class="progress-bar" [style.width.%]="(stat.value/255)*100" [title]="stat.value + '%'"></div>
-            </div>
-          </div>
-        </div>   
-        <div class="ivs" >
-          <h3>Ivs</h3>
-          <div *ngFor="let stat of statsArray">
-            <label>{{ stat.name }}: {{ stat.value }}</label>
-            <div class="progress-bar-container">
-              <div class="progress-bar" [style.width.%]="(stat.value/255)*100" [title]="stat.value + '%'"></div>
-            </div>
-          </div>
-        </div>  
-        <div class="evs" >
-          <h3>Evs</h3>
-          <div *ngFor="let stat of statsArray">
-            <label>{{ stat.name }}: {{ stat.value }}</label>
-            <div class="progress-bar-container">
-              <div class="progress-bar" [style.width.%]="(stat.value/255)*100" [title]="stat.value + '%'"></div>
-            </div>
-          </div>
-        </div>          
+        <table>
+          <thead>
+            <tr>
+              <th>Stats</th>
+              <th>Parameters</th>
+              <th colspan="2">Ivs</th>
+              <th colspan="2">Evs</th>
+            </tr>          
+          </thead>
+          <tbody>
+            <tr>
+              <td>Hp</td>
+              <td>{{ obtainStatsWithCertainLevel((pokemonCards[selectedPokemonIndex]?.hp || 0),ivs[0],evs[0],100,true) }}</td>
+              <td><input type="range" [(ngModel)]="ivs[0]" [min]="0" [max]="31" class="number-input"/></td>
+              <td><input type="number" [(ngModel)]="ivs[0]" [min]="0" [max]="252" class="number-input"/></td>
+              <td><input type="range" [(ngModel)]="evs[0]" [min]="0" [max]="252" class="number-input"/></td>
+              <td><input type="number" [(ngModel)]="evs[0]" [min]="0" [max]="252" class="number-input"/></td>
+            </tr>
+            <tr>
+              <td>Attack</td>
+              <td>{{ obtainStatsWithCertainLevel((pokemonCards[selectedPokemonIndex]?.attack || 0),ivs[1],evs[1],100,false) }}</td>
+              <td><input type="range" [(ngModel)]="ivs[1]" [min]="0" [max]="31" class="number-input"/></td>
+              <td><input type="number" [(ngModel)]="ivs[1]" [min]="0" [max]="252" class="number-input"/></td>
+              <td><input type="range" [(ngModel)]="evs[1]" [min]="0" [max]="252" class="number-input"/></td>
+              <td><input type="number" [(ngModel)]="evs[1]" [min]="0" [max]="252" class="number-input"/></td>
+            </tr>
+            <tr>
+              <td>Special Attack</td>
+              <td>{{ obtainStatsWithCertainLevel((pokemonCards[selectedPokemonIndex]?.specialAttack || 0),ivs[2],evs[2],100,false) }}</td>
+              <td><input type="range" [(ngModel)]="ivs[2]" [min]="0" [max]="31" class="number-input"/></td>
+              <td><input type="number" [(ngModel)]="ivs[2]" [min]="0" [max]="252" class="number-input"/></td>
+              <td><input type="range" [(ngModel)]="evs[2]" [min]="0" [max]="252" class="number-input"/></td>
+              <td><input type="number" [(ngModel)]="evs[2]" [min]="0" [max]="252" class="number-input"/></td>
+            </tr>
+            <tr>
+              <td>Defense</td>
+              <td>{{ obtainStatsWithCertainLevel((pokemonCards[selectedPokemonIndex]?.defense || 0),ivs[3],evs[3],100,false) }}</td>
+              <td><input type="range" [(ngModel)]="ivs[3]" [min]="0" [max]="31" class="number-input"/></td>
+              <td><input type="number" [(ngModel)]="ivs[3]" [min]="0" [max]="252" class="number-input"/></td>
+              <td><input type="range" [(ngModel)]="evs[3]" [min]="0" [max]="252" class="number-input"/></td>
+              <td><input type="number" [(ngModel)]="evs[3]" [min]="0" [max]="252" class="number-input"/></td>
+            </tr>
+            <tr>
+              <td>Special Defense</td>
+              <td>{{ obtainStatsWithCertainLevel((pokemonCards[selectedPokemonIndex]?.specialDefense || 0),ivs[4],evs[4],100,false) }}</td>
+              <td><input type="range" [(ngModel)]="ivs[4]" [min]="0" [max]="31" class="number-input"/></td>
+              <td><input type="number" [(ngModel)]="ivs[4]" [min]="0" [max]="252" class="number-input"/></td>
+              <td><input type="range" [(ngModel)]="evs[4]" [min]="0" [max]="252" class="number-input"/></td>
+              <td><input type="number" [(ngModel)]="evs[4]" [min]="0" [max]="252" class="number-input"/></td>
+              
+            </tr>
+            <tr>
+              <td>Speed</td>
+              <td>{{ obtainStatsWithCertainLevel((pokemonCards[selectedPokemonIndex]?.speed || 0),ivs[5],evs[5],100,false) }}</td>
+              <td><input type="range" [(ngModel)]="ivs[5]" [min]="0" [max]="31" class="number-input"/></td>
+              <td><input type="number" [(ngModel)]="ivs[5]" [min]="0" [max]="252" class="number-input"/></td>
+              <td><input type="range" [(ngModel)]="evs[5]" [min]="0" [max]="252" class="number-input"/></td>
+              <td><input type="number" [(ngModel)]="evs[5]" [min]="0" [max]="252" class="number-input"/></td>
+            </tr>          
+          </tbody>
+        </table>      
       </div>   
     </div>
 </div>  
